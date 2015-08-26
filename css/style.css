@@ -1,0 +1,112 @@
+html, body {
+  font-family: sans-serif;
+}
+
+body {
+  overflow: hidden;
+  text-align: center;
+}
+
+.group:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.character-display {
+  position: absolute;
+  top: 340px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 350px;
+  line-height: 100%;
+  border: 1px solid black;
+  width: 400px;
+  height: 390px;
+}
+
+.scores {
+  margin: 0 auto;
+  width: 600px;
+  font-size: 4vh;
+  text-align: center;
+}
+
+.score {
+  width: 33.333%;
+  vertical-align: top;
+}
+
+.main {
+  margin: 0 auto;
+  width: 700px;
+}
+
+.right, .wrong {
+  font-size: 45px;
+}
+
+.right {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
+
+.cps {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.progress-bar {
+  background: #C1B6EC;
+  position: absolute;
+  bottom: 0;
+  top: 390px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.key {
+  border: 1px solid black;
+  float: left;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  margin: 4px;
+  border-radius: 4px;
+  font-size: 24px;
+  background: #E9EBEF;
+  box-shadow: 1px 1px 2px gray;
+}
+
+.key:hover {
+  background: #F6C0F7;
+}
+
+.key.selected {
+  background: #CEBFFF;
+}
+
+.keyboard {
+  display: inline-block;
+  margin-top: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-right: 12px;
+}
+
+.row-2, .row-3 {
+  position: relative;
+}
+
+.row-2 {
+  left: 12px;
+}
+
+.row-3 {
+  left: 40px;
+}
