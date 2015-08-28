@@ -1,7 +1,7 @@
 ;(function() {
   var Flash = window.Flash = window.Flash || {};
   Flash.INTERVAL = 10;
-  Flash.CPS = 1.8;
+  Flash.SCORE_GOAL = 18;
   Flash.letters = JSON.parse(window.localStorage.getItem('letters')) || ['f', 'j'];
   Flash.timeouts = [];
 
@@ -24,9 +24,13 @@
   }
 
   function changeLetter() {
-    var oldLetter = Flash.currentLetter;
-    while (Flash.currentLetter === oldLetter) {
-      Flash.currentLetter = _.sample(Flash.letters);
+    if (Flash.letters.length) {
+      var oldLetter = Flash.currentLetter;
+      while (Flash.currentLetter === oldLetter) {
+        Flash.currentLetter = _.sample(Flash.letters);
+      }
+    } else {
+      Flash.currentLetter = '...';
     }
     $('.character').text(Flash.currentLetter);
   }
@@ -92,7 +96,7 @@
   }
 
   function score() {
-    return ( Flash.right - ( 4 * Flash.wrong ) ) / Flash.INTERVAL;
+    return Flash.right - ( 4 * Flash.wrong );
   }
 
   function selectKeys() {
@@ -130,13 +134,13 @@
   function updateCPM() {
     $('.cps').text( score() );
     updateProgressBar();
-    if ( score() >= Flash.CPS) {
+    if ( score() >= Flash.SCORE_GOAL) {
       levelUp();
     }
   }
 
   function updateProgressBar() {
-    var percentOfCpsGoal = score() / Flash.CPS;
+    var percentOfCpsGoal = score() / Flash.SCORE_GOAL;
     var percentNotAccomplished = 1 - percentOfCpsGoal;
     var pixelsNotAccomplished = Math.max(0, 390 * percentNotAccomplished);
     Flash.$progressBar.css('top', pixelsNotAccomplished);
