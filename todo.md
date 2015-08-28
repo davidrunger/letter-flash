@@ -1,5 +1,6 @@
 # letter-flash To-Do's
 
+* instructions
 * allow customization of chars/sec target
 * allow customization of progress bar color
 * use modal or other more elegant popup instead of JS alert
