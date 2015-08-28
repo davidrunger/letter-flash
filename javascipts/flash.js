@@ -25,10 +25,10 @@
 
   function changeLetter() {
     if (Flash.letters.length) {
-      var oldLetter = Flash.currentLetter;
-      while (Flash.currentLetter === oldLetter) {
-        Flash.currentLetter = _.sample(Flash.letters);
-      }
+      var idx = Flash.letters.indexOf(Flash.currentLetter);
+      var otherLetters = Flash.letters.slice();
+      otherLetters.splice(idx, 1);
+      Flash.currentLetter = _.sample(otherLetters);
     } else {
       Flash.currentLetter = '...';
     }
