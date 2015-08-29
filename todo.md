@@ -7,3 +7,4 @@
 * add some fancy styling
 * prevent registering keypress when using modifier keys
 * don't have negative points for errors; just restart them with 0 correct
+* Shepherd tour?
