@@ -30,6 +30,7 @@
       otherLetters.splice(idx, 1);
       Flash.currentLetter = _.sample(otherLetters);
     } else {
+      // if the user has un-selected all letters
       Flash.currentLetter = '...';
     }
     $('.character').text(Flash.currentLetter);
@@ -56,7 +57,7 @@
 
   function handleKeypress(event) {
     var allowedPunctuation = [44, 46, 59].indexOf(event.which) !== -1;
-    if ((event.which < 65 &&!allowedPunctuation) || event.which > 122) {
+    if ((event.which < 65 && !allowedPunctuation) || event.which > 122) {
       return;
     }
 

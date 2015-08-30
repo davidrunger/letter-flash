@@ -8,3 +8,5 @@
 * prevent registering keypress when using modifier keys
 * don't have negative points for errors; just restart them with 0 correct
 * Shepherd tour?
+* setup a class or something to store functions instead of polluting the global namespace
+* use CDN for jQuery
