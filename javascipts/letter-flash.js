@@ -21,6 +21,9 @@
       var letter = $el.text();
       toggleLetter(letter);
     });
+    $('.instructions').click(function () {
+      introJs().start();
+    });
   }
 
   function changeLetter() {

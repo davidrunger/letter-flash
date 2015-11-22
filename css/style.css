@@ -14,15 +14,14 @@ body {
 }
 
 .character-display {
-  position: absolute;
-  top: 340px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  display: inline-block;
   font-size: 350px;
   line-height: 100%;
   border: 1px solid black;
   width: 400px;
   height: 390px;
+  margin-top: 80px;
 }
 
 .scores {
@@ -38,9 +37,8 @@ body {
 }
 
 .main {
-  margin: 0 auto;
-  width: 700px;
-  min-height: 800px;
+  margin: 10px auto 40px;
+  width: 620px;
 }
 
 .right, .wrong {
@@ -110,4 +108,12 @@ body {
 
 .row-3 {
   left: 40px;
+}
+
+.instructions {
+  display: block;
+  margin-top: 75px;
+  text-decoration: none;
+  color: #8469DD;
+  font-size: 20px;
 }
