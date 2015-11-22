@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-  overflow: hidden;
+  overflow: auto;
   text-align: center;
 }
 
@@ -40,6 +40,7 @@ body {
 .main {
   margin: 0 auto;
   width: 700px;
+  min-height: 800px;
 }
 
 .right, .wrong {
