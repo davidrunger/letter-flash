@@ -19,9 +19,9 @@ body {
   font-size: 350px;
   line-height: 100%;
   border: 1px solid black;
+  margin-top: 80px;
   width: 400px;
   height: 390px;
-  margin-top: 80px;
 }
 
 .scores {

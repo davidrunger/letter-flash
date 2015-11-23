@@ -6,6 +6,7 @@
   Flash.timeouts = [];
 
   Flash.initialize = function () {
+    Flash.HEIGHT = $('.character-display').innerHeight();
     Flash.$progressBar = $('.progress-bar');
     selectKeys();
     setup();
@@ -33,22 +34,16 @@
       otherLetters.splice(idx, 1);
       Flash.currentLetter = _.sample(otherLetters);
     } else {
-      // if the user has un-selected all letters
+      // user has un-selected all letters
       Flash.currentLetter = '...';
     }
     $('.character').text(Flash.currentLetter);
   }
 
-  function changeRight(diff, lettersInPlay) {
-    if (diff === -1 && lettersInPlay !== Flash.letters.length) { return; }
+  function changeRight(diff) {
+    if (diff === -1) return;
 
     Flash.right += diff;
-    $('.right').text(Flash.right);
-  }
-
-  function changeWrong(diff, lettersInPlay) {
-    Flash.wrong += diff;
-    $('.wrong').text(Flash.wrong);
   }
 
   function clearTimeouts() {
@@ -72,38 +67,39 @@
       markWrong();
     }
 
-    updateCPM();
+    update();
   }
 
   function levelUp() {
-    alert("You've reached 1.8 chars/sec. Maybe add a letter?");
+    clearTimeouts();
+    var text = '';
+    text += 'Good job!\n'
+    text += 'You\'ve typed 18 characters in 10 seconds.'
+    text += 'Maybe add a letter?'
+    alert(text);
     setup();
   }
 
   function markRight() {
-    var lettersInPlay = Flash.letters.length;
     changeRight(1);
     var timeout = setTimeout(function () {
-      changeRight(-1, lettersInPlay);
-      updateCPM();
+      changeRight(-1);
+      update();
     }, 1000 * Flash.INTERVAL);
     Flash.timeouts.push(timeout);
   }
 
   function markWrong() {
-    changeWrong(1);
-    var timeout = setTimeout(function () {
-      changeWrong(-1, Flash.letters.length);
-      updateCPM();
-    }, 1000 * Flash.INTERVAL);
-    Flash.timeouts.push(timeout);
+    Flash.right = 0;
+    clearTimeouts();
   }
 
   function score() {
-    return Flash.right - ( 4 * Flash.wrong );
+    return Flash.right;
   }
 
   function selectKeys() {
+    // set 'selected' class for keys from the user's stored preferences
     Flash.letters.forEach(function (letter) {
       var $key = $('.key:contains(' + letter + ')');
       $key.addClass('selected');
@@ -116,11 +112,8 @@
     $('.character').text(Flash.currentLetter);
 
     Flash.right = 0;
-    Flash.wrong = 0;
 
-    $('.right').text('0');
-    $('.wrong').text('0');
-    updateCPM();
+    update();
   }
 
   function toggleLetter(letter) {
@@ -135,8 +128,7 @@
     changeLetter();
   }
 
-  function updateCPM() {
-    $('.cps').text( score() );
+  function update() {
     updateProgressBar();
     if ( score() >= Flash.SCORE_GOAL) {
       levelUp();
@@ -146,7 +138,7 @@
   function updateProgressBar() {
     var percentOfCpsGoal = score() / Flash.SCORE_GOAL;
     var percentNotAccomplished = 1 - percentOfCpsGoal;
-    var pixelsNotAccomplished = Math.max(0, 390 * percentNotAccomplished);
+    var pixelsNotAccomplished = Flash.HEIGHT * percentNotAccomplished;
     Flash.$progressBar.css('top', pixelsNotAccomplished);
   }
 })();
