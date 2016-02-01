@@ -41,8 +41,6 @@
   }
 
   function changeRight(diff) {
-    if (diff === -1) return;
-
     Flash.right += diff;
   }
 
